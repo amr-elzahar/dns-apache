@@ -38,7 +38,7 @@ The Directory directive is necessary to give Apache access to the file, as the d
 </Directory>
 ```
 
-5. If you have SELinux in enforcing mode, you need to change the context of the `/srv/httpd` directory for the HTTP server to be able to access it:
+5. If you have SELinux in enforcing mode, you need to change the context of the `/srv/httpd` directory for the httpd server to be able to access it:
 
 ```
 chcon -R -t httpd_sys_content_t /srv/httpd
