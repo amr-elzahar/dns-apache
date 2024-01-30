@@ -22,19 +22,19 @@ The main goal is to configure the Apache HTTP Server to serve two virtual hosts 
 </Directory>
 ```
 
-The Directory directive is necessary to give Apache access to the file, as the default configuration in the main file httpd.conf is to deny access to the entire filesystem.
+The Directory directive is necessary to give Apache access to the file, as the default configuration in the main configuraion file `httpd.conf` is to deny access to the entire filesystem.
 
 4. Paste this configuration into the second file (`02-virtual-host.conf`):
 
-```
-<VirtualHost \*:80>
-DocumentRoot /srv/httpd/virtual-two
-ServerName www.virtual-two.com
-ServerAlias virtual-two.com
+```apache
+<VirtualHost *:80>
+    DocumentRoot /srv/httpd/virtual-tow
+    ServerName www.virtual-tow.com
+    ServerAlias virtual-tow.com
 </VirtualHost>
 
 <Directory /srv/httpd>
-Require all granted
+    Require all granted
 </Directory>
 ```
 
@@ -50,7 +50,7 @@ The preceding command will change the context temporarily. If you want it to per
 semanage fcontext -a -t httpd_sys_content_t /srv/httpd
 ```
 
-6. In the /srv/httpd directory for each virtual host, create an index.html file and write anything into it.
+6. In the `/srv/httpd` directory for each virtual host, create an `index.html` file and write anything into it.
 
 7. For the DNS server, install the bind, bind-utils, and bind-chroot packages:
 
@@ -67,7 +67,7 @@ firewall-cmd --reload
 
 9. Use the bind-chroot service instead of the normal service for better security.
 
-10. o activate the bind-chroot service, set it up using the named-chroot-setup.service. This service will run a script located at `/usr/libexec/setup-named-chroot.sh` and mask the normal service `named`.
+10. To activate the `named-chroot` service, set it up using the `named-chroot-setup` service. This service will run a script located at `/usr/libexec/setup-named-chroot.sh` and mask the normal service `named`.
 
 11. In the `/etc/named.conf` file, write the options block:
 
